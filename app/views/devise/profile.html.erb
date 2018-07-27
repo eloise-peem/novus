@@ -1,0 +1,31 @@
+<div style="top: 100px">
+	<div class = "container">
+	<center>
+			<p><%= image_tag current_user.profile_picture.url, style: 'height:144px;width:144px;border-radius: 50%;' %></p>
+		
+		<br>
+		<strong><h1><%= current_user.first_name %> <%= current_user.last_name%></h1></strong>
+	
+		<% if @post.user_id == current_user.id %>
+			<% @posts.each do |f| %>
+				<div class="col-lg-4 mb-4">
+				<div class="card h-100">	
+					<h3 class="card-header"><%= f.title %></h3>
+					<div class="card-body">
+						<p class="card-text"><b>Conference: </b><%= f.conference_name %>  <br>
+									 		<b>Conference Date: </b><%= f.conference_date %> <br>
+					</div>
+			
+						<div class="card-footer">
+							<a href="../posts/<%= f.id %>" class="btn btn-primary">View Post</a>
+						</div>
+				</div>
+				</div>
+			<% end %>
+		<% end %>
+		<hr>
+			<a href="../../posts"> < Back to Post </a>
+
+		</center>
+	</div>
+</div>

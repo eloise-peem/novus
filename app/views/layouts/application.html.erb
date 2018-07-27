@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Ateneo De Naga Publication</title>
+  <%= stylesheet_link_tag   'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag  'application', 'data-turbolinks-track' => true %>
+
+  <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="author" content="pampersdry.info">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<link rel="shortcut icon" href="../../../../theme/images/Novus.png">
+	
+		 <link rel="stylesheet" href="../../../../theme/vendor/jqueryui/css/jquery-ui.min.css">
+    	<link rel="stylesheet" href="../../../../theme/vendor/bootstrap/css/uielement.css">
+    	<link rel="stylesheet" href="../../../../theme/vendor/font-awesome-4.5.0/css/font-awesome.min.css">
+    	<link rel="stylesheet" href="../../../../theme/vendor/bootstrap/css/bootstrap.min.css">
+    	<link rel="stylesheet" href="../../../../theme/vendor/bootstrap/css/layout.css">
+    	<link rel="stylesheet" href="../../../../theme/vendor/bootstrap/css/custom.css">
+    	<link rel="stylesheet" href="../../../../theme/vendor/bootstrap/css/uielement.css">
+
+		<script src="../../../../theme/vendor/bootstrap/js/modernizr.min.js"></script>
+		<script type="text/javascript" src="../../../../theme/vendor/bootstrap/js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../../theme/vendor/bootstrap/js/jquery-migrate.min.js"></script>
+
+ </head>
+
+ <body>
+
+	<header id="header" class="navbar navbar-fixed-top" style="background:#369; border-bottom: 2px solid rgb(255, 153, 51);">
+    <div class="container" >
+        <div style="background:#369; position: fixed; top: 4; left: 0;"">
+            <a href="/../../../../.." style=" border-bottom: 2px solid rgb(255, 153, 51);">
+                <h4 style="color:#fff; margin-left: 0; font-size: 28px; font-family: 'Times New Roman', Times, serif;"> Novus </h4>
+            </a>
+        </div>
+    </div>
+    
+        <% if current_user.present? %>
+         <p align="right"> 
+            <ul class="nav">
+                <span class="meta">
+                    <span class="icon"> 
+                        <%= button_to "Log out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?" } %>
+                    </span>
+                </span>
+            </ul>
+         </p>
+        <% end %>
+
+        <% if current_user.present? %>
+        <% else %>      
+        <p align="right">    
+            <ul class="nav">
+                            <h4 style="color:#fff;"><a href="../../users/sign_in"> Sign in </a> |   <a href="../../users/sign_up"> Sign up </a></h4><br>
+            </ul>
+        </p>
+        <% end %>
+
+   
+</header>
+
+<% if current_user.present? %>
+<% if current_user.confirmed? %>
+<aside class="sidebar sidebar-left sidebar-menu">
+    <section class="content slimscroll">
+        <div class="avatarPanel">
+            <div class="panel-body text-center hidden-sm hidden-xs-sm">
+            		 <!-- PROFILE PICTUR EHERE -->
+                     <%= image_tag  current_user.picture, style: 'height: 144px;width: 144px; radius: 5%; border-radius: 50%;' %>
+            </div>
+            <div class="empInfo" style="text-align: center; max-width:100%;  ">
+                <span class="nameOfEmployee" style="font-size:120%;"><%= current_user.first_name %> <%= current_user.last_name %></span>
+            </div>
+            <h5 style="padding: 3px;" class="heading text-center"><%= current_user.field %></h5>
+            <h5 style="padding: 3px;" class="heading text-center"><%= current_user.degree %></h5>
+        </div>
+        
+        <h5 class="heading">Main Menu</h5>
+
+        <ul class="topmenu topmenu-responsive" data-toggle="menu">
+        	
+            <li id="menu-dashboard">
+                
+                <a class="tlink" href="../../../" data-toggle="submenu" data-parent=".topmenu">
+                    <span class="figure"><i class="ico-home2"></i></span>
+                    <span class="text">Home</span>
+                </a>
+
+        		<a class="tlink" href="../../posts/<%= current_user.id%>/submission_type" data-toggle="submenu" data-parent=".topmenu">
+        			<span class="figure"><i class="ico-notebook"></i></span>
+        			<span class="text">Add Research Work</span>
+        		</a>
+        	</li>
+
+        	<li id="menu-dashboard">
+
+        		<a class="tlink" href="/../../../user_infos/<%=current_user.id %>" data-target="#itmMgt" data-toggle="submenu" data-parent=".topmenu">
+        			<span class="figure"><i class="ico-profile"></i></span>
+        			<span class="text">View Profile</span>
+        		</a>
+                
+        		<ul id="itmMgt" class="submenu collapse">
+                    <li class="submenu-header ellipsis">Menu 2</li>
+                    <li>
+                        <a href="/assets/minor-category">
+                            <span class="text">Sub-menu 1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/assets/item-generic">
+                            <span class="text">Sub-menu 2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/assets/item">
+                            <span class="text">Sub-menu 3</span>
+                        </a>
+                    </li>
+                </ul>
+        	</li>
+        </ul>    
+    </section>
+    <!--/ END Sidebar Container -->
+</aside>
+<% end %>
+<% end%>
+    </div>
+</section>
+<section id="main" role="main">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+            <h2></h2>
+                <%= yield %>
+            </div>
+        </div>
+    </div>
+ </section>
+
+ </body>
+</html>

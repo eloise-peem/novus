@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ateneo De Naga Publication</title>
+  <%= stylesheet_link_tag   'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag  'application', 'data-turbolinks-track' => true %>
+
+  <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="author" content="pampersdry.info">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+        <link rel="shortcut icon" href="../../../../theme/images/Novus.png">
+        <!--/ END META SECTION -->
+
+        <!-- START STYLESHEETS -->
+        <!-- Plugins stylesheet : optional -->
+        <link rel="stylesheet" href="../../../../theme/vendor/datatables/css/jquery.datatables.min.css">
+        <link rel="stylesheet" href="../../../../theme/vendor/jqueryui/css/jquery-ui.min.css">
+        <link rel="stylesheet" href="../../../../theme/vendor/gritter/css/jquery.gritter.min.css">
+        <link rel="stylesheet" href="../../../../theme/vendor/selectize/css/selectize.min.css">
+        <link rel="stylesheet" href="../../../../theme/vendor/jqueryui/css/jquery-ui-timepicker.min.css">
+        <link rel="stylesheet" href="../../../../theme/vendor/steps/css/jquery-steps.min.css">
+        <link rel="stylesheet" href="../../../../theme/vendor/bootstrap/css/uielement.css">
+        <link rel="stylesheet" href="../../../../theme/vendor/time-picker/picker/css/bootstrap-timepicker.min.css">
+        <link rel="stylesheet" href="../../../../theme/vendor/time-picker/picker/css/bootstrap-responsive.css">
+        <link rel="stylesheet" href="../../../../theme/vendor/summernote/css/summernote.css">
+        <link rel="stylesheet" href="../../../../theme/vendor/font-awesome-4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../../../../theme/vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../../../theme/vendor/bootstrap/css/layout.css">
+        <link rel="stylesheet" href="../../../../theme/vendor/bootstrap/css/custom.css">
+        <link rel="stylesheet" href="../../../../theme/vendor/bootstrap/css/uielement.css">
+
+        
+        <script src="../../../../theme/vendor/bootstrap/js/modernizr.min.js"></script>
+        <script type="text/javascript" src="../../../../theme/vendor/bootstrap/js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../../../theme/vendor/bootstrap/js/jquery-migrate.min.js"></script>
+
+</head>
+<body >
+
+    <header id="header" class="navbar navbar-fixed-top" style="background:#369; border-bottom: 2px solid rgb(255, 153, 51);">
+    <div class="container" >
+        <div style="background:#369; position: fixed; top: 4; left: 0;">
+            <a href="/../../../../.." style=" border-bottom: 2px solid rgb(255, 153, 51); margin-left: 0;">
+                <h4 style="color:#fff; margin-left: 0; font-size: 28px; font-family: 'Times New Roman', Times, serif;"> Novus</h4>
+            </a>
+        </div>
+    </div>
+    </header>
+    
+<section id="main" role="main" style="background: white">
+    
+        <section class="container">
+                    <div class="text-center" style="margin-bottom:10px; ">
+                        <span class="adnu-logo-figure inverse"></span>
+                        <h4 class="text-muted mt-0 font-alt">Welcome to Novus</h4>
+                    </div>
+                    <!--/ Header -->
+                    <center>
+                        <a href="../../../../posts/index"> Browse Projects </a> | <a href="../../../../user_infos/index"> Browse Authors </a>
+                    </center>
+                    <br>
+                <div class="col-lg-4 col-lg-offset-4">
+                    <hr /><!-- horizontal line -->
+                        <%= yield %>
+                </div>
+        </section>
+
+        <a href="#" class="totop animation" data-toggle="waypoints totop" data-showanim="bounceIn" data-hideanim="bounceOut" data-offset="50%"><i class="ico-angle-up"></i></a>
+</section>
+
+<footer id="footer" class="footer_design footer" role="contentinfo">
+    <div class="footer-bottom footer_bottom" >
+        <!-- container -->
+        <div class="container">
+            <div class="row innerFooter">
+                <div class="col-sm-6">
+                    <!-- copyright -->
+                    <p class="nm text-white">© Copyright 2017 Ateneo de Naga University</p>
+                    <p class="nm text-white"> Developed by: ...</p>
+                    <p><a href="https://services.adnu.edu.ph/#contact"> Contact Us</a> | 
+                    <a href="https://services.adnu.edu.ph/CodeOfConduct.pdf"> Code of Conduct</a> | 
+                    <a href="https://www.adnu.edu.ph"> Main Site</a>  | 
+                    <a href="https://my.adnu.edu.ph"> My Adnu</a> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

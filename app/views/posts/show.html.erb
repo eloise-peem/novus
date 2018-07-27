@@ -1,0 +1,309 @@
+<% if @post.privacy == true && @post.user_id == current_user.id %>
+
+<div style="top: 100px">
+<div class = "container">
+<div id = "post_content">
+	<br>
+		<%= link_to "< Back", :back %> | <% if current_user.id == @post.user_id%> <a href="../../../../posts/<%= @post.id %>/edit"> Edit Post </a> | <a href="/../../../../../posts/<%= @post.id %>/delete">Delete Post</a><br>
+		<% end %>
+		<br>
+		<h1 class = "title"> <%= @post.title %> </h1>
+		<div style="font-size: 8pt"><%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></div>
+		<br>
+		Submitted by: <a href="/../../../user_infos/<%= @post.user_id %>"><%= @post.user.first_name %> <%= @post.user.last_name %></a> <%= time_ago_in_words(@post.created_at) %> Ago<br>
+		<hr>
+		
+		<% if @post.paper_type == 1 %>
+			
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div>Link to Main Paper: <a href="<%= @post.url %>" target="_blank"><%= @post.url %></a></div>
+			<div> Name of Institution: <%= @post.institution %></div>
+			<div> Location of Institution: <%= @post.location %></div>
+			<div> <%= link_to "View Abstract", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Short Paper", pdfjs.minimal_path(file: "#{@post.short_paper}"), target: "_blank" %></div>
+			<div><%= link_to "View Full Paper", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 2 %>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div> Location of Conference: <%= @post.location %></div>
+			<div> Publisher: <%= @post.publisher %></div>
+			<div> <%= link_to "View Abstract", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Short Paper", pdfjs.minimal_path(file: "#{@post.short_paper}"), target: "_blank" %></div>
+			<div><%= link_to "View Full Paper", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 3 %>
+			<div> Conference Name: <%= @post.subtitle %></div>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div> Date of Presentation: <%= @post.date_of_presentation.strftime('%B %e, %Y') %></div>
+			<div> Location of Presentation: <%= @post.location %></div>
+			<div>Link to Main Paper: <a href="<%= @post.url %>" target="_blank"><%= @post.url %></a></div>
+			<div> <%= link_to "View Abstract", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Short Paper", pdfjs.minimal_path(file: "#{@post.short_paper}"), target: "_blank" %></div>
+			<div><%= link_to "View Full Paper", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 4 %>
+			<div> Conference Name: <%= @post.subtitle %></div>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div> Date of Presentation: <%= @post.date_of_presentation.strftime('%B %e, %Y') %></div>
+			<div> Location of Presentation: <%= @post.location %></div>
+			<% if current_user.present? %>
+			<div>Link to Main Paper: <a href="<%= @post.url %>" target="_blank"><%= @post.url %></a></div>
+			<div> Poster: <%= image_tag  @post.media, style: 'height: 50%;width: 50%;' %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 5 %>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div> Date of Issue: <%= @post.date_of_issue.strftime('%B %e, %Y') %></div>
+			<div> Volume: <%= @post.volume%></div>
+			<div> Issue: <%= @post.issue %> </div>
+			<div> Pages: <%= @post.page %> </div>
+			<% if current_user.present? %>
+			<div>Link to Main Paper: <a href="<%= @post.url %>" target="_blank"><%= @post.url %></a></div>
+			<% end %>
+			<% if current_user.present? %>
+			<div><%= link_to "View Magazine", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 6 %>
+			<div> Title of Paper: <%= @post.subtitle %></div>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div>Link to Main Paper: <a href="<%= @post.url %>" target="_blank"><%= @post.url %></a></div>
+			<div> Address: <%= @post.location %></div>
+			<div> <%= link_to "View Abstract", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Paper", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+		<% elsif @post.paper_type == 7 %>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div> Year of Publication: <%= @post.year_of_publication%></div>
+			<div> Publisher: <%= @post.publisher%></div>
+			<div> <%= link_to "View Abstract", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Book", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 8 %>
+			<div>Editor(s): <%=raw @post.all_authors %></div>
+			<div> Place Published: <%= @post.location %></div>
+			<div> Publisher: <%= @post.publisher%></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Book", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 9 %>
+			<div> Title of Book: <%= @post.subtitle%></div>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div> Editor: <%= @post.editor %></div>
+			<div> Place Published: <%= @post.location %></div>
+			<div> Publisher: <%= @post.publisher %></div>
+			<div> Year of Publication: <%= @post.year_of_publication %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Book", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+		<% elsif @post.paper_type == 10 %>
+			<div> Name of Newspaper: <%= @post.subtitle%></div>
+			<div> Pages: <%= @post.page%></div>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div> Date of Publication: <%= @post.date_of_presentation.strftime('%B %e, %Y') %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Newspaper Article", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+		<% elsif @post.paper_type == 11 %>
+			<div>Director: <%=raw @post.all_authors %></div>
+			<div> Producer: <%= @post.publisher %></div>
+			<div> <%= link_to "View Plot Summary", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %></div>
+			<% if current_user.present? %>
+			<div>Link to Film/Broadcast: <a href="<%= @post.url %>" target="_blank"><%= @post.url %></a></div>
+			<div> Preview: <br><%= video_tag @post.media, :size => "520x440", :controls => true %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 12 %>
+			<div> Version Number: <%= @post.volume %></div>
+			<div> Year of Publication: <%= @post.year_of_publication %></div>
+			<div> Author(s): <%=raw @post.all_authors %></div>
+			<% if current_user.present? %>
+			<div>Link to Software Preview: <a href="<%= @post.url %>" target="_blank"><%= @post.url %></a></div>
+			<% end %>
+		<% elsif @post.paper_type == 13 %>
+			<div> Artist(s): <%=raw @post.all_authors %></div>
+			<div> Date of Publication: <%= @post.date_of_presentation.strftime('%B %e, %Y') %></div>
+			<div> Place Published: <%= @post.location %></div>
+			<% if current_user.present? %>
+			<div> Artwork: <br><%= image_tag  @post.media, style: 'height: 50%;width: 50%;' %></div>
+			<% end %>
+		<% elsif @post.paper_type == 14 %>
+			<div> Title of Album: <%= @post.subtitle %></div>
+			<div> Songwriter(s): <%=raw @post.all_authors %></div>
+			<div> Place of Publication: <%= @post.location %></div>
+			<div> Label: <%= @post.publisher %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Lyrics", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %></div>
+			<div> Track Preview: <br><audio controls src="<%= @post.media %>"></audio>
+			<% end %>
+		<% elsif @post.paper_type == 15 %>
+		<% end %>
+</div>
+</div>
+
+<% elsif @post.privacy == false %>
+<div style="top: 100px">
+<div class = "container">
+<div id = "post_content">
+	<br>
+		<%= link_to " < Back", :back %> <% if current_user.id == @post.user_id%> | <a href="../../../../posts/<%= @post.id %>/edit"> Edit Post </a> | <a href="/../../../../../posts/<%= @post.id %>/delete">Delete Post</a><br>
+		<% end %>
+		<br>
+		<h1 class = "title"> <%= @post.title %> </h1>
+		<div style="font-size: 8pt"><%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></div>
+		<br>
+		Submitted by: <a href="/../../../user_infos/<%= @post.user_id %>"><%= @post.user.first_name %> <%= @post.user.last_name %></a> <%= time_ago_in_words(@post.created_at) %> Ago<br>
+		<hr>
+		
+		<% if @post.paper_type == 1 %>
+			
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div>Link to Main Paper: <a href="<%= @post.url %>" target="_blank"><%= @post.url %></a></div>
+			<div> Name of Institution: <%= @post.institution %></div>
+			<div> Location of Institution: <%= @post.location %></div>
+			<div> <%= link_to "View Abstract", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Short Paper", pdfjs.minimal_path(file: "#{@post.short_paper}"), target: "_blank" %></div>
+			<div><%= link_to "View Full Paper", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 2 %>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div> Location of Conference: <%= @post.location %></div>
+			<div> Publisher: <%= @post.publisher %></div>
+			<div> <%= link_to "View Abstract", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Short Paper", pdfjs.minimal_path(file: "#{@post.short_paper}"), target: "_blank" %></div>
+			<div><%= link_to "View Full Paper", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 3 %>
+			<div> Conference Name: <%= @post.subtitle %></div>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div> Date of Presentation: <%= @post.date_of_presentation.strftime('%B %e, %Y') %></div>
+			<div> Location of Presentation: <%= @post.location %></div>
+			<div>Link to Main Paper: <a href="<%= @post.url %>" target="_blank"><%= @post.url %></a></div>
+			<div> <%= link_to "View Abstract", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Short Paper", pdfjs.minimal_path(file: "#{@post.short_paper}"), target: "_blank" %></div>
+			<div><%= link_to "View Full Paper", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 4 %>
+			<div> Conference Name: <%= @post.subtitle %></div>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div> Date of Presentation: <%= @post.date_of_presentation.strftime('%B %e, %Y') %></div>
+			<div> Location of Presentation: <%= @post.location %></div>
+			<% if current_user.present? %>
+			<div>Link to Main Paper: <a href="<%= @post.url %>" target="_blank"><%= @post.url %></a></div>
+			<div> Poster: <%= image_tag  @post.media, style: 'height: 50%;width: 50%;' %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 5 %>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div> Date of Issue: <%= @post.date_of_issue.strftime('%B %e, %Y') %></div>
+			<div> Volume: <%= @post.volume%></div>
+			<div> Issue: <%= @post.issue %> </div>
+			<div> Pages: <%= @post.page %> </div>
+			<% if current_user.present? %>
+			<div>Link to Main Paper: <a href="<%= @post.url %>" target="_blank"><%= @post.url %></a></div>
+			<% end %>
+			<% if current_user.present? %>
+			<div><%= link_to "View Magazine", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 6 %>
+			<div> Title of Paper: <%= @post.subtitle %></div>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div>Link to Main Paper: <a href="<%= @post.url %>" target="_blank"><%= @post.url %></a></div>
+			<div> Address: <%= @post.location %></div>
+			<div> <%= link_to "View Abstract", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Paper", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+		<% elsif @post.paper_type == 7 %>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div> Year of Publication: <%= @post.year_of_publication%></div>
+			<div> Publisher: <%= @post.publisher%></div>
+			<div> <%= link_to "View Abstract", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Book", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 8 %>
+			<div>Editor(s): <%=raw @post.all_authors %></div>
+			<div> Place Published: <%= @post.location %></div>
+			<div> Publisher: <%= @post.publisher%></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Book", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 9 %>
+			<div> Title of Book: <%= @post.subtitle%></div>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div> Editor: <%= @post.editor %></div>
+			<div> Place Published: <%= @post.location %></div>
+			<div> Publisher: <%= @post.publisher %></div>
+			<div> Year of Publication: <%= @post.year_of_publication %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Book", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+		<% elsif @post.paper_type == 10 %>
+			<div> Name of Newspaper: <%= @post.subtitle%></div>
+			<div> Pages: <%= @post.page%></div>
+			<div>Author(s): <%=raw @post.all_authors %></div>
+			<div> Date of Publication: <%= @post.date_of_presentation.strftime('%B %e, %Y') %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Newspaper Article", pdfjs.minimal_path(file: "#{@post.full_paper}"), target: "_blank" %></div>
+			<% end %>
+		<% elsif @post.paper_type == 11 %>
+			<div>Director: <%=raw @post.all_authors %></div>
+			<div> Producer: <%= @post.publisher %></div>
+			<div> <%= link_to "View Plot Summary", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %></div>
+			<% if current_user.present? %>
+			<div>Link to Film/Broadcast: <a href="<%= @post.url %>" target="_blank"><%= @post.url %></a></div>
+			<div> Preview: <br><%= video_tag @post.media, :size => "520x440", :controls => true %></div>
+			<% end %>
+
+		<% elsif @post.paper_type == 12 %>
+			<div> Version Number: <%= @post.volume %></div>
+			<div> Year of Publication: <%= @post.year_of_publication %></div>
+			<div> Author(s): <%=raw @post.all_authors %></div>
+			<% if current_user.present? %>
+			<div>Link to Software Preview: <a href="<%= @post.url %>" target="_blank"><%= @post.url %></a></div>
+			<% end %>
+		<% elsif @post.paper_type == 13 %>
+			<div> Artist(s): <%=raw @post.all_authors %></div>
+			<div> Date of Publication: <%= @post.date_of_presentation.strftime('%B %e, %Y') %></div>
+			<div> Place Published: <%= @post.location %></div>
+			<% if current_user.present? %>
+			<div> Artwork: <br><%= image_tag  @post.media, style: 'height: 50%;width: 50%;' %></div>
+			<% end %>
+		<% elsif @post.paper_type == 14 %>
+			<div> Title of Album: <%= @post.subtitle %></div>
+			<div> Songwriter(s): <%=raw @post.all_authors %></div>
+			<div> Place of Publication: <%= @post.location %></div>
+			<div> Label: <%= @post.publisher %></div>
+			<% if current_user.present? %>
+			<div><%= link_to "View Lyrics", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %></div>
+			<div> Track Preview: <br><audio controls src="<%= @post.media %>"></audio>
+			<% end %>
+		<% elsif @post.paper_type == 15 %>
+		<% end %>
+</div>
+</div>
+<% else %>
+<br><br><br>
+<center><h3> This post is private. Only the owner can access this page. </h3><br><br><br>
+<a href="/../../../../"><u> < Back to Home </u></a></center>
+<% end %>

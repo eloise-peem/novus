@@ -1,0 +1,63 @@
+<div class="page-header page-header-block">
+			<div class="page-header-section">
+				<h4 class="title semibold">Newsfeed</h4>
+			</div>
+</div>
+
+Updated at <%= Time.now.strftime('%B %e, %Y at %l:%M %p') %><br>
+<div class="row">
+<% @posts.each do |f| %>
+ <% if f.privacy == false %>
+	<div class="col-lg-4 mb-4">
+		<div class="card h-100">
+			<h3 class="card-header"> <%= f.title %> <% if f.paper_type == 1 %>
+					<b><span style="background-color: #FFFF00; font-size: 8pt;">Thesis</span></b>
+				<% elsif f.paper_type == 2 %>
+					<b><span style="background-color: #00FFFF; font-size: 8pt;">Conferece Proceeding</span></b>
+				<% elsif f.paper_type == 3 %>
+					<b><span style="background-color: #800080; font-size: 8pt;">Paper Presentation</span></b>
+				<% elsif f.paper_type == 4 %>
+					<b><span style="background-color: #00FF00; font-size: 8pt;">Poster Presentation</span></b>
+				<% elsif f.paper_type == 5 %>
+					<b><span style="background-color: #FF00FF; font-size: 8pt;">Magazine</span></b>
+				<% elsif f.paper_type == 6 %>
+					<b><span style="background-color: #FFA500; font-size: 8pt;">Journal</span></b>
+				<% elsif f.paper_type == 7 %>
+					<b><span style="background-color: #A52A2A; font-size: 8pt;">Scholarly Book</span></b>
+				<% elsif f.paper_type == 8 %>
+					<b><span style="background-color: #800000; font-size: 8pt;">Edited Book</span></b>
+				<% elsif f.paper_type == 9 %>
+					<b><span style="background-color: #808000; font-size: 8pt;">Chapter in Edited Book</span></b>
+				<% elsif f.paper_type == 10 %>
+					<b><span style="background-color: #25383C; font-size: 8pt;">Newspaper Article</span></b>
+				<% elsif f.paper_type == 11 %>
+					<b><span style="background-color: #493D26; font-size: 8pt;">Film/Broadcast</span></b>
+				<% elsif f.paper_type == 12 %>
+					<b><span style="background-color: #E77471; font-size: 8pt;">Computer Science</span></b>
+				<% elsif f.paper_type == 13 %>
+					<b><span style="background-color: #7F525D; font-size: 8pt;">Artwork</span></b>
+				<% elsif f.paper_type == 14 %>
+					<b><span style="background-color: #B048B5; font-size: 8pt;">Music</span></b>
+				<% elsif f.paper_type == 15 %>
+					<b><span style="background-color: #9172EC; font-size: 8pt;">Blog</span></b>
+				<% end %></h3>
+			
+			<div class="card-body">
+				<p class="card-text">
+					<b>Author: </b><%= f.author_fname %> <%= f.author_lname %><br>
+					<% if f.abstract.present? %>
+					<b>Abstract: </b> <a href="<%= f.abstract %>" target="_blank"> View </a><br>
+					<% end %>
+					<b>Place of Publication: </b><%= f.location %><br>
+					<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+			</div>
+			
+			<div class="card-footer">
+					<a href="../posts/<%= f.id %>" class="btn btn-primary">View Post</a>
+			</div>
+		</div>
+	</div>
+ <% end %>
+</div>
+<br>
+<%= will_paginate @posts %>

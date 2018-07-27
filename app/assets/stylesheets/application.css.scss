@@ -1,0 +1,54 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+
+p#profile img{
+	height: 110px;
+	width: auto;
+	border-radius: 500%;
+	float: center;	
+}
+
+p#t1 img{
+	height: 45px;
+	width: auto;
+	float:left;
+}
+
+p#t2 img{
+	height: 120px;
+	width: auto;
+}
+
+p#t3 img{
+	height: 65px;
+	width: 2250px;
+}
+
+p#t4 img{
+	height: 35px;
+	width: auto;
+	float: right;
+}
+
+.sidebar {
+	height: 1920px;
+	width:	844px;
+	float: left;
+}

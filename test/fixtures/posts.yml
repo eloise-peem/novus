@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  conference_name: MyString
+  coference_date: 2017-11-27
+  author_fname: MyString
+  author_mname: MyString
+  author_lname: MyString
+  degree: MyString
+  links: MyString
+  abstract: MyString
+  short_paper: MyString
+  full_paper: MyString
+
+two:
+  title: MyString
+  conference_name: MyString
+  coference_date: 2017-11-27
+  author_fname: MyString
+  author_mname: MyString
+  author_lname: MyString
+  degree: MyString
+  links: MyString
+  abstract: MyString
+  short_paper: MyString
+  full_paper: MyString

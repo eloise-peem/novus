@@ -1,0 +1,243 @@
+
+
+	<%= link_to "< Back", :back %> </a> 
+	<% if current_user.id == @user_info.user_id %> | <a href="/../../../../../users/edit"> Change Password </a> | <a href="/../../../../../user_infos/<%= @user_info.id %>/edit"> Edit Profile </a>
+	<% end %>
+	<center>
+		
+		<br>
+		<% if current_user.present? && current_user.id == @user_info.user_id %>
+		<% else %>
+			<%= image_tag  @user_info.picture, style: 'height: 144px;width: 144px; radius: 5%; border-radius: 50%;' %>
+		<% end %>
+		<strong><h1><%= @user_info.first_name %> <%= @user_info.last_name%></h1></strong>
+		<strong><i class="ico-envelop"></i></strong> <%= @user_info.email %><br>
+		<strong><i class="ico-phone7"></i> </strong> <%= @user_info.contact_number %><br>
+		<strong><i class="ico-link"></i></strong><a href="<%= @user_info.links %>" target="_blank"> <%= @user_info.links %></a><br>
+		<strong><i class="ico-book"></i> Field of Study: </strong> <%= @user_info.field %><br>
+		<strong><i class="ico-graduation"></i> Degree: </strong> <%= @user_info.degree %><br>
+		<strong><i class="ico-pencil"></i> Interests:</strong>  <%= @user_info.interest %><br>
+	
+		<hr>
+		<br>
+		<h2><a href="../../user_infos/<%= @user_info.id %>/"> Works Published </a> 
+		<%if current_user.present? %> 
+		<% if @user_info.id == current_user.id %> | <a href="../../user_infos/<%= @user_info.id %>/work_progress"> Work in Progress </a>
+		<% else %>
+		<% end %></h2>
+		<% end %>
+		<br><br>
+		</center>
+
+		<div class="row">
+			<% @posts.each do |f| %>
+			<% if f.privacy == false %>
+				<% if f.user_id == @user_info.id %>
+				<div class="col-lg-4 mb-4">
+					<div class="card h-100">	
+						<h3 class="card-header"> <%= f.title %> <% if f.paper_type == 1 %>
+					<b><span style="background-color: #FA8072; font-size: 8pt;">Thesis/Dissertation</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Author(s): </b> <%=raw f.all_authors %><br>
+								<b>Name of Institution: </b><%= f.institution %><br>
+								<% if f.abstract.present? %>
+								<%= link_to "View Abstract", pdfjs.minimal_path(file: "#{f.abstract}"), target: "_blank" %><br>
+								<% end %>
+								<b>Place of Publication: </b><%= f.location %><br>
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</p>
+						</div>
+
+				<% elsif f.paper_type == 2 %>
+					<b><span style="background-color: #FF7F50; font-size: 8pt;">Conferece Proceeding</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Author(s): </b> <%=raw f.all_authors %><br>
+								<b>Location of Conference: </b><%= f.location %><br>
+								<b>Publisher: </b><%= f.publisher %><br>
+								<% if f.abstract.present? %>
+								<%= link_to "View Abstract", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %><br>
+								<% end %>
+								
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</p>
+						</div>
+				<% elsif f.paper_type == 3 %>
+					<b><span style="background-color: #F0E68C; font-size: 8pt;">Paper Presentation</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Conference Name: </b><%= f.subtitle %> <br>
+								<b>Author(s): </b> <%=raw f.all_authors %><br>
+								<b>Location of Presentation: </b><%= f.location %><br>
+								<b>Date of Presentation: </b><%= f.date_of_presentation.strftime('%B %e, %Y') %><br>
+								<% if f.abstract.present? %>
+								<%= link_to "View Abstract", pdfjs.minimal_path(file: "#{f.abstract}"), target: "_blank" %><br>
+								<% end %>
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</p>
+						</div>
+				<% elsif f.paper_type == 4 %>
+					<b><span style="background-color: #6A5ACD; font-size: 8pt;">Poster Presentation</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Conference Name: </b><%= f.subtitle %> <br>
+								<b>Author(s): </b> <%=raw f.all_authors %><br>
+								<b>Location of Presentation: </b><%= f.location %><br>
+								<b>Date of Presentation: </b><%= f.date_of_presentation.strftime('%B %e, %Y') %><br>
+								<% if f.abstract.present? %>
+								<%= link_to "View Abstract", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %><br>
+								<% end %>
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</p>
+						</div>
+				<% elsif f.paper_type == 5 %>
+					<b><span style="background-color: #90EE90; font-size: 8pt;">Magazine</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Author(s): </b> <%=raw f.all_authors %><br>
+								<b>Date of Issue: </b><%= f.date_of_issue %> <br>
+								<b>Volume: </b><%= f.volume %><br>
+								<b>Issue: </b><%= f.issue %><br>
+								<b>Pages: </b><%= f.page %><br>
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</p>
+						</div>
+				<% elsif f.paper_type == 6 %>
+					<b><span style="background-color: #9ACD32; font-size: 8pt;">Journal</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Title of Paper: </b><%= f.subtitle %> <br>
+								<b>Author(s): </b> <%=raw f.all_authors %><br>
+								<b>Place of Publication: </b><%= f.location %><br>
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</p>
+						</div>
+				<% elsif f.paper_type == 7 %>
+					<b><span style="background-color: #66CDAA; font-size: 8pt;">Scholarly Book</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Author(s): </b> <%=raw f.all_authors %><br>
+								<b>Year of Publication: </b><%= f.year_of_publication %><br>
+								<b>Publisher: </b><%= f.publisher %><br>
+								<% if f.abstract.present? %>
+								<%= link_to "View Abstract", pdfjs.minimal_path(file: "#{f.abstract}"), target: "_blank" %><br>
+								<% end %>
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</p>
+						</div>
+				<% elsif f.paper_type == 8 %>
+					<b><span style="background-color: #B0C4DE; font-size: 8pt;">Edited Book</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Editor: </b> <%=raw f.all_authors %><br>
+								<b>Place of Publication: </b><%= f.location %><br>
+								<b>Publisher: </b><%= f.publisher %><br>
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</p>
+						</div>
+				<% elsif f.paper_type == 9 %>
+					<b><span style="background-color: #BC8F8F; font-size: 8pt;">Chapter in Edited Book</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Title of Book: </b><%= f.subtitle %> <br>
+								<b>Author(s): </b> <%=raw f.all_authors %><br>
+								<b>Editor: </b><%= f.editor %> <br>
+								<b>Place of Publication: </b><%= f.location %><br>
+								<b>Publisher: </b><%= f.publisher %><br>
+								<b>Year of Publication: </b><%= f.year_of_publication %><br>
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</p>
+						</div>
+				<% elsif f.paper_type == 10 %>
+					<b><span style="background-color: #C0C0C0; font-size: 8pt;">Newspaper Article</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Name of Newspaper: </b><%= f.subtitle %> <br>
+								<b>Author(s): </b> <%=raw f.all_authors %><br>
+								<b>Pages: </b><%= f.page %> <br>
+								<b>Date of Publication: </b><%= f.date_of_presentation.strftime('%B %e, %Y') %><br>
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</p>
+						</div>
+				<% elsif f.paper_type == 11 %>
+					<b><span style="background-color: #DEB887; font-size: 8pt;">Film/Broadcast</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Director: </b> <%=raw f.all_authors %><br>
+								<b>Producer: </b><%= f.publisher %><br>
+								<%= link_to "View Plot Summary", pdfjs.minimal_path(file: "#{@post.abstract}"), target: "_blank" %><br>
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</p>
+						</div>
+				<% elsif f.paper_type == 12 %>
+					<b><span style="background-color: #1E90FF; font-size: 8pt;">Computer Science</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Author(s): </b> <%=raw f.all_authors %><br>
+								<b>Version Number: </b><%= f.volume %><br>
+								<b>Year of Publication: </b><%= f.year_of_publication %><br>
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</p>
+						</div>
+				<% elsif f.paper_type == 13 %>
+					<b><span style="background-color: #D8BFD8; font-size: 8pt;">Artwork</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Artist(s): </b> <%=raw f.all_authors %><br>
+								<b>Date of Publication: </b><%= f.date_of_presentation.strftime('%B %e, %Y') %><br>
+								<b>Place Published: </b><%= f.location %><br>
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</p>
+						</div>
+				<% elsif f.paper_type == 14 %>
+					<b><span style="background-color: #FF7F50; font-size: 8pt;">Music</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Title of Album: </b><%= f.subtitle %> <br>
+								<b>Songwriter(s): </b><%=raw f.all_authors %><br>
+								<b>Place of Publication: </b><%= f.location %><br>
+								<b>Label: </b><%= f.publisher %><br>
+								<%= link_to "View Lyrics", pdfjs.minimal_path(file: "#{f.abstract}"), target: "_blank" %><br>
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</b>
+						</div>
+				<% elsif f.paper_type == 15 %>
+					<b><span style="background-color: #CD5C5C; font-size: 8pt;">Blog</span></b></h3>
+
+						<div class="card-body">
+							<p class="card-text">
+								<b>Author(s): </b> <%=raw f.all_authors %><br>
+								<b>Date of Publication: </b><%= f.date_of_presentation.strftime('%B %e, %Y') %><br>
+								<b>Place of Publication: </b><%= f.location %><br>
+								<b>Related Tags: </b><%= raw tag_links(f.all_tags) %>
+							</p>
+						</div>
+				<% end %></h3>
+				
+					
+					<% if current_user.present? %>
+					<div class="card-footer">
+						<a href="/../../../posts/<%= f.id %>" class="btn btn-primary">View Post</a>
+					</div>
+					<% end %>
+					</div>
+				</div>
+				<% end %>
+				<% end %>
+			<% end %>
+		</div>

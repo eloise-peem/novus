@@ -1,0 +1,24 @@
+<div class="panel-body text-center">
+  <div class="form-group">
+
+<h1>TERMS AND CONDITIONS : </h1>
+<br>
+ <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed tempus elit. Aenean blandit laoreet vulputate. Proin efficitur maximus dolor, vel tincidunt erat mollis quis. Integer non ligula tortor. Fusce sit amet interdum risus. Sed vel aliquam enim, sit amet sagittis lorem. Mauris malesuada fringilla nisi vel accumsan. Nunc hendrerit lobortis lectus, eu tristique nibh interdum in. Vivamus gravida enim dignissim purus molestie, non euismod odio tempus. Suspendisse eu magna pulvinar, consectetur nulla porttitor, dignissim lacus.</p>
+
+<p>Maecenas congue, mi ac rhoncus posuere, nibh nulla varius sem, a tristique elit erat vel turpis. Proin ac euismod ante. Praesent sapien arcu, dictum dignissim viverra lobortis, convallis id eros. Donec laoreet purus at massa ultrices, ut eleifend nisi varius. Sed fringilla, leo in molestie semper, odio eros auctor nisl, sit amet pulvinar orci ante eu velit. Vivamus ut dictum risus. Nulla facilisi. Sed at neque eu eros maximus tincidunt. Cras nec commodo urna. Pellentesque tempor lacinia semper. Aenean egestas metus ut interdum mattis. Phasellus convallis metus quis purus lacinia, sit amet bibendum diam efficitur. Phasellus eu porttitor metus, in placerat ex. Suspendisse potenti. Nulla facilisi.</p>
+
+<%= form_for @user_info do |f| %>
+ <div class="field">
+
+    <%= f.hidden_field :first_name, autofocus: true %>
+    <%= f.hidden_field :last_name, autofocus: true %>
+    <%= f.hidden_field :contact_number, autofocus: true %>
+    <%= f.hidden_field :links, autofocus: true %>
+    <%= f.hidden_field :picture, autofocus: true %>
+  <div class="actions">
+    <%= f.submit "Continue"  %>
+  </div>
+  
+<% end %>
+</div>
+</div>

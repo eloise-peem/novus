@@ -1,0 +1,92 @@
+<% if @post.errors.any? %>
+
+  <div id="error_explanation">
+    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+ 
+    <ul>
+    	<% @post.errors.full_messages.each do |msg| %>
+      		<li><%= msg %></li>
+    	<% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class = "container">
+	<div id = "page_wrapper">
+		<br>
+			<h2>Submit Magazine</h2>	
+		<hr>
+		
+		<%= form_for @post do |f| %>
+		<br>
+
+    <div class="field">
+        <th>Title of Article</th>
+          <br><%= f.text_field :title, :required => true %> 
+      </div>
+
+    <div class="field">
+        <th>Author(s)</th><em> If more than one (1), separate names with commas. </em>
+        <br><%= f.text_field :all_authors, :required => true%>
+      </div>
+
+    <div class="field">
+        <th>Date of Issue</th>
+        <br><%= f.date_field :date_of_issue, :required => true %>
+      </div>
+
+    <div class="field">
+        <th>Volume</th>
+        <br><%= f.text_field :volume, :required => true %>
+      </div>
+
+      <div class="field">
+        <th>Issue</th>
+        <br><%= f.text_field :issue, :required => true %>
+      </div>
+
+      <div class="field">
+        <th>Pages</th>
+        <br><%= f.text_field :page, :required => true %>
+      </div>
+
+      <div class="field">
+        <th>Link to Main Paper</th>
+        <br><%= f.text_field :url %>
+      </div>
+
+      <div class="field">
+        <th>Upload Magazine</th><br>
+        <em>(Please make sure files is in PDF format) </em>
+          <br><%= f.file_field :full_paper %> 
+      </div>
+
+      <div class="field">
+            <th>Related Tags</th><br>
+            <em>(Separate tags with a comma)</em><br>
+            <%= f.text_field :all_tags %>
+        </div>
+
+
+    <div class="field">
+        <th>Privacy</th>
+        <em>(Making your post private means only you could see it.)</em>
+        <br> <%= f.radio_button :privacy, true %>Private <t><t>
+           <%= f.radio_button :privacy, false %>Public
+      </div>
+
+      <%= f.hidden_field :paper_type, :value => 5 %>
+
+      
+      <br>
+      <div class="actions">
+        <%= f.submit "Save" %>
+      </div>
+
+      <div class="actions">
+        <a href="/../../../../"> Cancel </a>
+      </div>
+      
+    <% end %>
+  </div>
+</div>
