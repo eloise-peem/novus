@@ -2,66 +2,6 @@ class PostsController < ApplicationController
 
 #before_action :authenticate_user!
 
-  def thesis
-  	@post = Post.new
-  end
-
-  def conference
-    @post = Post.new
-  end
-
-  def paper
-    @post = Post.new
-  end
-
-  def poster
-    @post = Post.new
-  end
-
-  def magazine
-    @post = Post.new
-  end
-
-  def journal
-    @post = Post.new
-  end
-
-  def scholarly_book
-    @post = Post.new
-  end
-
-  def edited_book
-    @post = Post.new
-  end
-
-  def chap_in_edited_book
-    @post = Post.new
-  end
-
-  def newspaper
-    @post = Post.new
-  end
-
-  def broadcast
-    @post = Post.new
-  end
-  
-  def computer_science
-    @post = Post.new
-  end
-
-  def artwork
-    @post = Post.new
-  end
-
-  def music
-    @post = Post.new
-  end
-
-  def blog
-    @post = Post.new
-  end
-
   def create
 	  @post = current_user.posts.new(post_params)
 
