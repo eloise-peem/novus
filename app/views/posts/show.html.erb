@@ -4,13 +4,13 @@
 <div class = "container">
 <div id = "post_content">
 	<br>
-		<%= link_to "< Back", :back %> | <% if current_user.id == @post.user_id%> <a href="../../../../posts/<%= @post.id %>/edit"> Edit Post </a> | <a href="/../../../../../posts/<%= @post.id %>/delete">Delete Post</a><br>
+		<%= link_to "< Back", :back %> | <% if current_user.id == @post.user_id%> <a href="../../../../novus/posts/<%= @post.id %>/edit"> Edit Post </a> | <a href="/../../../../../novus/posts/<%= @post.id %>/delete">Delete Post</a><br>
 		<% end %>
 		<br>
 		<h1 class = "title"> <%= @post.title %> </h1>
 		<div style="font-size: 8pt"><%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></div>
 		<br>
-		Submitted by: <a href="/../../../user_infos/<%= @post.user_id %>"><%= @post.user.first_name %> <%= @post.user.last_name %></a> <%= time_ago_in_words(@post.created_at) %> Ago<br>
+		Submitted by: <a href="/../../../novus/user_infos/<%= @post.user_id %>"><%= @post.user.first_name %> <%= @post.user.last_name %></a> <%= time_ago_in_words(@post.created_at) %> Ago<br>
 		<hr>
 		
 		<% if @post.paper_type == 1 %>
@@ -156,13 +156,13 @@
 <div class = "container">
 <div id = "post_content">
 	<br>
-		<%= link_to " < Back", :back %> <% if current_user.id == @post.user_id%> | <a href="../../../../posts/<%= @post.id %>/edit"> Edit Post </a> | <a href="/../../../../../posts/<%= @post.id %>/delete">Delete Post</a><br>
+		<%= link_to " < Back", :back %> <% if current_user.id == @post.user_id%> | <a href="../../../../novus/posts/<%= @post.id %>/edit"> Edit Post </a> | <a href="/../../../../../novus/posts/<%= @post.id %>/delete">Delete Post</a><br>
 		<% end %>
 		<br>
 		<h1 class = "title"> <%= @post.title %> </h1>
 		<div style="font-size: 8pt"><%= raw @post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></div>
 		<br>
-		Submitted by: <a href="/../../../user_infos/<%= @post.user_id %>"><%= @post.user.first_name %> <%= @post.user.last_name %></a> <%= time_ago_in_words(@post.created_at) %> Ago<br>
+		Submitted by: <a href="/../../../novus/user_infos/<%= @post.user_id %>"><%= @post.user.first_name %> <%= @post.user.last_name %></a> <%= time_ago_in_words(@post.created_at) %> Ago<br>
 		<hr>
 		
 		<% if @post.paper_type == 1 %>
@@ -305,5 +305,5 @@
 <% else %>
 <br><br><br>
 <center><h3> This post is private. Only the owner can access this page. </h3><br><br><br>
-<a href="/../../../../"><u> < Back to Home </u></a></center>
+<a href="/../../../../novus/"><u> < Back to Home </u></a></center>
 <% end %>

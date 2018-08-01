@@ -1,7 +1,7 @@
 
 
 	<%= link_to "< Back", :back %> </a> 
-	<% if current_user.id == @user_info.user_id %> | <a href="/../../../../../users/edit"> Change Password </a> | <a href="/../../../../../user_infos/<%= @user_info.id %>/edit"> Edit Profile </a>
+	<% if current_user.id == @user_info.user_id %> | <a href="/../../../../../novus/users/edit"> Change Password </a> | <a href="/../../../../../novus/user_infos/<%= @user_info.id %>/edit"> Edit Profile </a>
 	<% end %>
 	<center>
 		
@@ -20,9 +20,9 @@
 	
 		<hr>
 		<br>
-		<h2><a href="../../user_infos/<%= @user_info.id %>/"> Works Published </a> 
+		<h2><a href="../../novus/user_infos/<%= @user_info.id %>/"> Works Published </a> 
 		<%if current_user.present? %> 
-		<% if @user_info.id == current_user.id %> | <a href="../../user_infos/<%= @user_info.id %>/work_progress"> Work in Progress </a>
+		<% if @user_info.id == current_user.id %> | <a href="../../novus/user_infos/<%= @user_info.id %>/work_progress"> Work in Progress </a>
 		<% else %>
 		<% end %></h2>
 		<% end %>
@@ -232,7 +232,7 @@
 					
 					<% if current_user.present? %>
 					<div class="card-footer">
-						<a href="/../../../posts/<%= f.id %>" class="btn btn-primary">View Post</a>
+						<a href="/../../../novus/posts/<%= f.id %>" class="btn btn-primary">View Post</a>
 					</div>
 					<% end %>
 					</div>

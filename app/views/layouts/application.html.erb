@@ -32,7 +32,7 @@
 	<header id="header" class="navbar navbar-fixed-top" style="background:#369; border-bottom: 2px solid rgb(255, 153, 51);">
     <div class="container" >
         <div style="background:#369; position: fixed; top: 4; left: 0;"">
-            <a href="/../../../../.." style=" border-bottom: 2px solid rgb(255, 153, 51);">
+            <a href="/../../../../../novus/" style=" border-bottom: 2px solid rgb(255, 153, 51);">
                 <h4 style="color:#fff; margin-left: 0; font-size: 28px; font-family: 'Times New Roman', Times, serif;"> Novus </h4>
             </a>
         </div>
@@ -54,7 +54,7 @@
         <% else %>      
         <p align="right">    
             <ul class="nav">
-                            <h4 style="color:#fff;"><a href="../../users/sign_in"> Sign in </a> |   <a href="../../users/sign_up"> Sign up </a></h4><br>
+                            <h4 style="color:#fff;"><a href="../../novus/users/sign_in"> Sign in </a> |   <a href="../../novus/users/sign_up"> Sign up </a></h4><br>
             </ul>
         </p>
         <% end %>
@@ -84,12 +84,12 @@
         	
             <li id="menu-dashboard">
                 
-                <a class="tlink" href="../../../" data-toggle="submenu" data-parent=".topmenu">
+                <a class="tlink" href="../../../novus/" data-toggle="submenu" data-parent=".topmenu">
                     <span class="figure"><i class="ico-home2"></i></span>
                     <span class="text">Home</span>
                 </a>
 
-        		<a class="tlink" href="../../posts/<%= current_user.id%>/submission_type" data-toggle="submenu" data-parent=".topmenu">
+        		<a class="tlink" href="../../novus/posts/<%= current_user.id%>/submission_type" data-toggle="submenu" data-parent=".topmenu">
         			<span class="figure"><i class="ico-notebook"></i></span>
         			<span class="text">Add Research Work</span>
         		</a>
@@ -97,7 +97,7 @@
 
         	<li id="menu-dashboard">
 
-        		<a class="tlink" href="/../../../user_infos/<%=current_user.id %>" data-target="#itmMgt" data-toggle="submenu" data-parent=".topmenu">
+        		<a class="tlink" href="/../../../novus/user_infos/<%=current_user.id %>" data-target="#itmMgt" data-toggle="submenu" data-parent=".topmenu">
         			<span class="figure"><i class="ico-profile"></i></span>
         			<span class="text">View Profile</span>
         		</a>
@@ -105,17 +105,17 @@
         		<ul id="itmMgt" class="submenu collapse">
                     <li class="submenu-header ellipsis">Menu 2</li>
                     <li>
-                        <a href="/assets/minor-category">
+                        <a href="/novus/assets/minor-category">
                             <span class="text">Sub-menu 1</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/assets/item-generic">
+                        <a href="/novus/assets/item-generic">
                             <span class="text">Sub-menu 2</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/assets/item">
+                        <a href="/novus/assets/item">
                             <span class="text">Sub-menu 3</span>
                         </a>
                     </li>
