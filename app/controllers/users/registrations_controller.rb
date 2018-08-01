@@ -3,7 +3,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   def sign_up_params
-    if params[:action] == 'create' && params[:controller] == 'novus/users/registrations'
+    if params[:action] == 'create' && params[:controller] == 'users/registrations'
       params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :contact_number, :links, :picture, :confirmed, :interest, :degree, :field)
     end
   end

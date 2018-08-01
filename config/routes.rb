@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 	#root to: redirect('/posts/guest_index')
   
   root to: 'novus/posts#index'
-  devise_for :users, :controllers => { registrations: 'novus/users/registrations' }
+  devise_for :users, :controllers => { registrations: 'users/registrations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
   mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
@@ -16,21 +16,6 @@ Rails.application.routes.draw do
 
   get 'posts/:id' => 'posts#show'
   get 'posts/guest_index' => 'posts#guest_index'
-  get 'posts/:id/thesis' => 'posts#thesis'
-  get 'posts/:id/conference_proceeding' => 'posts#conference'
-  get 'posts/:id/poster_presentation' => 'posts#poster'
-  get 'posts/:id/paper_presentation' => 'posts#paper'
-  get 'posts/:id/magazine' => 'posts#magazine'
-  get 'posts/:id/journal' => 'posts#journal'
-  get 'posts/:id/scholarly_book' => 'posts#scholarly_book'
-  get 'posts/:id/edited_book' => 'posts#edited_book'
-  get 'posts/:id/chapter_in_edited_book' => 'posts#chap_in_edited_book'
-  get 'posts/:id/newspaper_article' => 'posts#newspaper'
-  get 'posts/:id/broadcast' => 'posts#broadcast'
-  get 'posts/:id/computer_science' => 'posts#computer_science'
-  get 'posts/:id/artwork' => 'posts#artwork'
-  get 'posts/:id/music' => 'posts#music'
-  get 'posts/:id/blog' => 'posts#blog'
   get 'posts/:id/authors' => 'posts#author'
   put 'posts/:id/authors' => 'posts#update'
   get 'posts/:id/edit' => 'posts#edit'
