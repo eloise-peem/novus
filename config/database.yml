@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: novusdb_production
-  username: novus
+  username: novusdb
   password: <%= ENV['novusdb_DATABASE_PASSWORD'] %>
