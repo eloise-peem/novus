@@ -1,0 +1,76 @@
+<% if @post.errors.any? %>
+
+  <div id="error_explanation">
+    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+ 
+    <ul>
+    	<% @post.errors.full_messages.each do |msg| %>
+      		<li><%= msg %></li>
+    	<% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class = "container">
+	<div id = "page_wrapper">
+		<br>
+			<h2>Submit Computer Science Output</h2>	
+		<hr>
+		
+		<%= form_for @post do |f| %>
+		<br>
+
+    <div class="field">
+        <th>Title of Software</th>
+          <br><%= f.text_field :title, :required => true %> 
+    </div>
+
+    <div class="field">
+        <th>Version Number</th>
+        <br><%= f.text_field :volume, :required => true, :required => true %>
+    </div>
+
+    <div class="field">
+        <th>Year of Publication</th>
+        <br><%= f.text_field :year_of_publication, :required => true %>
+    </div>
+
+    <div class="field">
+        <th>Author(s)</th><em> If more than one (1), separate names with commas. </em>
+        <br><%= f.text_field :all_authors, :required => true%>
+      </div>
+
+    <div class="field">
+        <th>Link to Software</th>
+        <br><%= f.text_field :url, :required => true %>
+    </div>
+
+      <div class="field">
+            <th>Related Tags</th><br>
+            <em>(Separate tags with a comma)</em><br>
+            <%= f.text_field :all_tags %>
+        </div>
+
+
+    <div class="field">
+        <th>Privacy</th>
+        <em>(Making your post private means only you could see it.)</em>
+        <br> <%= f.radio_button :privacy, true %>Private <t><t>
+           <%= f.radio_button :privacy, false %>Public
+      </div>
+
+      <%= f.hidden_field :paper_type, :value => 12 %>
+
+      
+      <br>
+      <div class="actions">
+        <%= f.submit "Save" %>
+      </div>
+      
+      <div class="actions">
+        <a href="/../../../../novus"> Cancel </a>
+      </div>
+      
+    <% end %>
+  </div>
+</div>
