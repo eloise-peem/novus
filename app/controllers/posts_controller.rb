@@ -71,7 +71,7 @@ class PostsController < ApplicationController
   end
 
   def submission_type
-      render :file => 'posts/submission_type.html.erb'
+      render :file => 'novus/posts/submission_type.html.erb'
   end
 
   def edit

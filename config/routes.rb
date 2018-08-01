@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   #end
 	#root to: redirect('/posts/guest_index')
   
-  root to: 'posts#index'
-  devise_for :users, :controllers => { registrations: 'users/registrations' }
+  root to: 'novus/posts#index'
+  devise_for :users, :controllers => { registrations: 'novus/users/registrations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
   mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
