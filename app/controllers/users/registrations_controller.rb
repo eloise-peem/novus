@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(user)
-    '/user_infos/sign_up' 
+    '/novus/user_infos/sign_up' 
   end
 
  protected
