@@ -66,7 +66,7 @@ class PostsController < ApplicationController
 	  @post = current_user.posts.new(post_params)
 
     if @post.save
-       redirect_to root_url
+       redirect_to root_url, notice: "Your research work has been uploaded."
     end
   end
 
@@ -104,7 +104,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 	  @post.destroy()
 
-    redirect_to root_url
+    redirect_to root_url, notice:  "The research work has been deleted."
   end
 
    def show

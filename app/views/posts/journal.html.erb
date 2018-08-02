@@ -47,8 +47,8 @@
 
     <div class="field">
         <th>Upload Journal</th><br>
-        <em>(Please make sure files is in PDF format) </em>
-          <br><%= f.file_field :full_paper %> 
+        <em>(Please make sure file is in PDF format) </em>
+          <br><%= f.file_field :full_paper, :required => true %> 
     </div>
 
       <div class="field">
